@@ -1,11 +1,14 @@
-﻿[setup]
+﻿[phases.setup]
+# Tell Nixpacks to use .NET 8 SDK
 packages = ["dotnet-sdk_8"]
 
 [phases.build]
-cmds = ["dotnet build SkinCareTipsAPI/SkinCareTipsAPI.csproj -c Release"]
+# Restore and build your project
+commands = [
+    "dotnet restore SkinCareTipsAPI/SkinCareTipsAPI.csproj",
+    "dotnet build SkinCareTipsAPI/SkinCareTipsAPI.csproj -c Release"
+]
 
-[phases.install]
-cmds = ["dotnet restore"]
-
-[start]
-cmd = "dotnet SkinCareTipsAPI/bin/Release/net8.0/SkinCareTipsAPI.dll"
+[phases.start]
+# Start your API
+command = "dotnet SkinCareTipsAPI/bin/Release/net8.0/SkinCareTipsAPI.dll"
