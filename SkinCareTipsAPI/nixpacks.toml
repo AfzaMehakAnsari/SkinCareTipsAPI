@@ -1,2 +1,11 @@
-﻿[phases.setup]
-nixPkgs = ["dotnet-sdk_8", "dotnet-aspnetcore_8"]
+﻿[setup]
+packages = ["dotnet-sdk_8"]
+
+[phases.build]
+cmds = ["dotnet build SkinCareTipsAPI/SkinCareTipsAPI.csproj -c Release"]
+
+[phases.install]
+cmds = ["dotnet restore"]
+
+[start]
+cmd = "dotnet SkinCareTipsAPI/bin/Release/net8.0/SkinCareTipsAPI.dll"
